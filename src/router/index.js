@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { useAuthStore } from "../stores/authStore";
 
 const routers = [{
     path: "/",
@@ -9,7 +10,7 @@ const routers = [{
 {
     path: "/products",
     name: "product",
-    component: () => import('../views/ProductsView.vue')
+    component: () => import('../views/ProductsView.vue'),
 },
 {
     path: "/cart",
@@ -35,5 +36,14 @@ const routers = [{
 const routes = createRouter({
     history: createWebHistory(),
     routes: routers
+})
+routes.beforeEach((to, from, next) => {
+    const auth = useAuthStore();
+    const protectedRoutes=['/cart','/products']
+    if (protectedRoutes.includes(to.path) && !auth.isAuthenticated) {
+        next('/login')
+    } else {
+        next();
+    }
 })
 export default routes
