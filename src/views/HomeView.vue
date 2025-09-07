@@ -6,7 +6,7 @@ import TrendingProducts from '../components/home/TrendingProducts.vue';
 </script>
 
 <template>
-  <div class="space-y-32">
+  <div class="">
   <Hero/>
   <Featured/>
   <TopRated/>

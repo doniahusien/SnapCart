@@ -1,5 +1,5 @@
 <template>
-  <section class="my-10 flex flex-col justify-center items-center">
+  <section class="my-10 py-20 flex flex-col justify-center items-center">
     <h2 class="text-2xl font-bold mb-6"> Trending Products</h2>
     <div class="flex flex-wrap gap-6 justify-center">
       <ProductCard

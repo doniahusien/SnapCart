@@ -1,6 +1,6 @@
 <template>
-  <section class="px-6 text-center">
-    <h2 class="text-2xl font-bold mb-6 text-gray-800">Featured Categories</h2>
+  <section class="py-15 px-6 text-center bg-black text-white">
+    <h2 class="text-2xl font-bold mb-6">Featured Categories</h2>
 
     <div class="flex flex-wrap gap-6 justify-center items-center">
       <div
