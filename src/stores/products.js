@@ -4,8 +4,9 @@ import axios from "axios";
 export const useProductsStore = defineStore("products", {
     state: () => ({
         products: [],
+        product:{},
         categories: [],
-        productsByCategory:[],
+        productsByCategory: [],
         loading: false,
         error: null
     }),
@@ -42,9 +43,9 @@ export const useProductsStore = defineStore("products", {
             }
 
         },
-         async fetchByCategory(cat) {
-             this.loading = true;
-             this.error = null;
+        async fetchByCategory(cat) {
+            this.loading = true;
+            this.error = null;
             try {
                 const res = await axios.get(`https://fakestoreapi.com/products/category/${cat}`);
                 this.productsByCategory = res.data;
@@ -54,6 +55,18 @@ export const useProductsStore = defineStore("products", {
                 this.loading = false;
             }
 
+        },
+        async fetchProductById(id) {
+            this.loading = true;
+            this.error = null;
+            try {
+                const res = await axios.get(`https://fakestoreapi.com/products/${id}`);
+                this.product = res.data;
+            } catch {
+                this.error = error.message || "Something wrong"
+            } finally {
+                this.loading = false;
+            }
         }
     }
 })
