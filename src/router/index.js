@@ -44,8 +44,8 @@ const routes = createRouter({
 })
 routes.beforeEach((to, from, next) => {
     const auth = useAuthStore();
-    const protectedRoutes=['/cart','/products']
-    if (protectedRoutes.includes(to.path) && !auth.isAuthenticated) {
+    const protectedRoutes=['cart','products','singleproduct','category']
+    if (protectedRoutes.includes(to.name) && !auth.isAuthenticated) {
         next('/login')
     } else {
         next();
