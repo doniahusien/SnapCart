@@ -74,24 +74,7 @@
       <li>
         <RouterLink class="hover:text-emerald-400" to="/about">About</RouterLink>
       </li>
-        <li class="relative" @mouseleave="open = false">
-        <button @mouseenter="open = true" class="hover:text-emerald-400">
-          Categories
-        </button>
-        <ul
-          v-if="open"
-          class="absolute top-full left-0 bg-white text-black shadow-lg rounded mt-2 w-40 z-50"
-        >
-          <li v-for="item in categories" :key="item">
-            <RouterLink
-              class="block px-4 py-2 hover:text-emerald-400"
-              :to="`/category/${item.toLowerCase()}`"
-            >
-              {{ item }}
-            </RouterLink>
-          </li>
-        </ul>
-      </li>
+      
       <li v-if="auth.isAuthenticated" class="w-full">
         <RouterLink
           to="/cart"
