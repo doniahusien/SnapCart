@@ -25,7 +25,15 @@ const routers = [{
 {
     path: "/login",
     name: "login",
-    component: () => import('../views/Login.vue')
+    component: () => import('../views/Login.vue'),
+    beforeEnter: (to, from, next) => {
+         const auth = useAuthStore();
+        if (auth.isAuthenticated) {
+            next("/")
+        } else {
+            next();
+        }
+    }
 },
 {
     path: "/product/:id",
