@@ -30,7 +30,7 @@ const productsStore = useProductsStore();
 const router = useRouter();
 const route = useRoute();
 const cat = route.params.cat;
-const activeTab = ref(cat);
+const activeTab = ref(decodeURIComponent(cat));
 const categories = ["Jewelery", "Electronics", "Men Clothing", "Women Clothing"];
 
 const categoryMap = {

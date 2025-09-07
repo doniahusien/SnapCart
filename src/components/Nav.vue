@@ -11,6 +11,24 @@
       <li>
         <RouterLink class="hover:text-emerald-400" to="/about">About</RouterLink>
       </li>
+      <li class="relative" @mouseleave="open = false">
+        <button @mouseenter="open = true" class="hover:text-emerald-400">
+          Categories
+        </button>
+        <ul
+          v-if="open"
+          class="absolute top-full left-0 bg-white text-black shadow-lg rounded mt-2 w-40 z-50"
+        >
+          <li v-for="item in categories" :key="item">
+            <RouterLink
+              class="block px-4 py-2 hover:text-emerald-400"
+              :to="`/category/${item.toLowerCase()}`"
+            >
+              {{ item }}
+            </RouterLink>
+          </li>
+        </ul>
+      </li>
     </ul>
 
     <div class="hidden md:flex justify-around gap-2 md:gap-5">
@@ -43,39 +61,63 @@
   </div>
 
   <div v-if="isOpen" class="bg-white min-h-screen">
-    <ul class=" w-full md:hidden text-lg flex flex-col justify-between items-start p-3 gap-5">
+    <ul
+      class="w-full md:hidden text-lg flex flex-col justify-between items-start p-3 gap-5"
+    >
       <li>
         <RouterLink class="hover:text-emerald-400" to="/">Home</RouterLink>
       </li>
       <li>
         <RouterLink class="hover:text-emerald-400" to="/products">Products</RouterLink>
       </li>
+
       <li>
         <RouterLink class="hover:text-emerald-400" to="/about">About</RouterLink>
       </li>
-      <li v-if="auth.isAuthenticated" class="w-full" >
+        <li class="relative" @mouseleave="open = false">
+        <button @mouseenter="open = true" class="hover:text-emerald-400">
+          Categories
+        </button>
+        <ul
+          v-if="open"
+          class="absolute top-full left-0 bg-white text-black shadow-lg rounded mt-2 w-40 z-50"
+        >
+          <li v-for="item in categories" :key="item">
+            <RouterLink
+              class="block px-4 py-2 hover:text-emerald-400"
+              :to="`/category/${item.toLowerCase()}`"
+            >
+              {{ item }}
+            </RouterLink>
+          </li>
+        </ul>
+      </li>
+      <li v-if="auth.isAuthenticated" class="w-full">
         <RouterLink
           to="/cart"
-          class=" block px-4 py-2 rounded-xl bg-green-500 text-white hover:bg-green-600"
+          class="block px-4 py-2 rounded-xl bg-green-500 text-white hover:bg-green-600"
         >
           Cart
         </RouterLink>
       </li>
       <li v-if="auth.isAuthenticated" class="w-full">
-        <button @click="auth.logout()" class=" w-full text-start block px-4 py-2 rounded-xl bg-red-500 text-white hover:bg-red-600">
+        <button
+          @click="auth.logout()"
+          class="w-full text-start block px-4 py-2 rounded-xl bg-red-500 text-white hover:bg-red-600"
+        >
           Logout
         </button>
       </li>
       <li v-else class="w-full">
         <RouterLink
           to="/login"
-          class=" block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          class="block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
         >
           Login
         </RouterLink>
       </li>
     </ul>
-    <RouterView/>
+    <RouterView />
   </div>
 </template>
 <script setup>
@@ -84,4 +126,6 @@ import { useAuthStore } from "../stores/authStore";
 import { ref } from "vue";
 const auth = useAuthStore();
 const isOpen = ref(false);
+const categories = ["Jewelery", "Electronics", "Men Clothing", "Women Clothing"];
+const open = ref(false);
 </script>
