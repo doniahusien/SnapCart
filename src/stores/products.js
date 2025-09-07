@@ -17,12 +17,13 @@ export const useProductsStore = defineStore("products", {
     actions: {
         async fetchProducts() {
             this.loading = true;
+            this.error = null;
             try {
                 const res = await axios.get("https://fakestoreapi.com/products");
                 this.products = res.data
             }
             catch {
-                this.error = res.error;
+                this.error = error.message
             }
             finally {
                 this.loading = false;
@@ -30,23 +31,25 @@ export const useProductsStore = defineStore("products", {
         },
         async fetchCategories() {
             this.loading = true;
+            this.error = null;
             try {
                 const res = await axios.get("https://fakestoreapi.com/products/categories");
                 this.categories = res.data;
             } catch {
-                this.error = res.error
+                this.error = error.message
             } finally {
                 this.loading = false;
             }
 
         },
          async fetchByCategory(cat) {
-            this.loading = true;
+             this.loading = true;
+             this.error = null;
             try {
-                const res = await axios.get(`https://fakestoreapi.com/products/categories/${cat}`);
+                const res = await axios.get(`https://fakestoreapi.com/products/category/${cat}`);
                 this.productsByCategory = res.data;
             } catch {
-                this.error = res.error
+                this.error = error.message || "Something wrong"
             } finally {
                 this.loading = false;
             }
