@@ -75,6 +75,7 @@
         </RouterLink>
       </li>
     </ul>
+    <RouterView/>
   </div>
 </template>
 <script setup>
