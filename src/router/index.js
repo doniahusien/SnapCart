@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { useAuthStore } from "../stores/authStore";
-
 const routers = [{
     path: "/",
     alias: "/home",
+    name:"home",
     component: () => import('../views/HomeView.vue')
     
 },
@@ -31,6 +31,11 @@ const routers = [{
     path: "/product/:id",
     name: "singleproduct",
     component: () => import('../views/ProductDetailsView.vue')
+    },
+    {
+        path: "/category/:cat",
+        name: "category",
+        component:()=>import('../views/CategoryView.vue')
 }
 ]
 const routes = createRouter({
