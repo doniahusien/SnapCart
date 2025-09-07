@@ -18,6 +18,7 @@
     </RouterLink>
 
     <button
+      @click="addToCart(product.id)"
       class="bg-emerald-500 cursor-pointer mt-2 text-white font-semibold py-1 px-4 rounded hover:bg-emerald-600 transition-colors duration-300"
     >
       Add to Cart
@@ -27,7 +28,15 @@
 
 <script setup>
 import { StarIcon } from "@heroicons/vue/24/solid";
+import { useCartStore } from "../stores/cart"; 
+
 defineProps({
   product: Object,
 });
+
+const cartStore = useCartStore();
+
+function addToCart(productId) {
+  cartStore.addCart(productId);
+}
 </script>
